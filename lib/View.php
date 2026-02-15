@@ -8,6 +8,9 @@
  * @copyright 2012 Sébastien SAUVAGE (sebsauvage.net)
  * @license   https://www.opensource.org/licenses/zlib-license.php The zlib/libpng License
  * @version   1.5.1
+ * @category   Web
+ * @package    PrivateBin
+ * @author     Sébastien SAUVAGE <sebsauvage.net>
  */
 
 namespace PrivateBin;
@@ -27,7 +30,7 @@ class View
      * @access private
      * @var    array
      */
-    private $_variables = array();
+    private $_variables = [];
 
     /**
      * assign variables to be used inside of the template
@@ -50,10 +53,11 @@ class View
      */
     public function draw($template)
     {
-        $file = substr($template, 0, 9) === 'bootstrap' ? 'bootstrap' : $template;
-        $path = PATH . 'tpl' . DIRECTORY_SEPARATOR . $file . '.php';
+        $file =
+            substr($template, 0, 9) === "bootstrap" ? "bootstrap" : $template;
+        $path = PATH . "tpl" . DIRECTORY_SEPARATOR . $file . ".php";
         if (!file_exists($path)) {
-            throw new Exception('Template ' . $template . ' not found!', 80);
+            throw new Exception("Template " . $template . " not found!", 80);
         }
         extract($this->_variables);
         include $path;
